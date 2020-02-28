@@ -1,0 +1,77 @@
+* {
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+}
+.main-container{
+    width: 1535px;
+    height: 1040px;
+}
+.container {
+    display: flex;
+    margin: 40px;
+    justify-content: space-between;
+}
+.textArea{
+    width: 250px;
+    height: 125px;
+    padding: 4px 8px;
+    margin: 20px 0px;
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+}
+.text-boxes{
+    width: 467.5px;
+    height: 157.5px;
+    padding: 4px 8px;
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+}
+.text-containers{
+    display: block;
+}
+.text-boxes{
+    margin-bottom: 25px;
+    display: flex;
+}
+.search-text{
+    width: 250px;
+    height: 33.75px;
+    padding: 4px 8px;
+    font-size: 14px;
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+}
+.search-Btn{
+    width: 137.5px;
+    height: 31.75px;
+    font-size: 16px;
+    padding: 0px 10px;
+    border: 1px;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    background-color: rgb(230, 230, 230);
+}
+.clear-Btn{
+    width: 137.5px;
+    height: 31.75px;
+    font-size: 16px;
+    padding: 0px 10px;
+    border: 1px;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    background-color: rgb(230, 230, 230);
+}
+.text-note{
+    margin: 0px;
+    font-size: 14;
+    color: black;
+    font-family: Helvetica, Arial, sans-serif;
+}
+.close{
+    position: relative;
+}
