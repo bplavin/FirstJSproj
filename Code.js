@@ -1,12 +1,11 @@
 "use strict";
 
-function searchBtn() {
-    var btn = document.createElement("BUTTON");
-    document.body.appendChild(btn);
+function createPara() {
+    var para = document.createElement("DIV");
+    para.innerHTML = "Some note text";
+    document.getElementById("myDIV").appendChild(para).classList.add('TextBox');
   }
-  function searchBtn() {
-    var btn = document.deleteElement("BUTTON");
-    document.body.deleteChild(btn);
-  }
-
-  let elem = document.getElementById('elem');
+  function removePara() {
+    var elem = document.getElementById('myDIV');
+    elem.parentNode.removeChild(elem);
+   }

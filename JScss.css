@@ -20,21 +20,6 @@
     border-style: solid;
     border-color: rgb(0, 0, 0);
 }
-.text-boxes{
-    width: 467.5px;
-    height: 157.5px;
-    padding: 4px 8px;
-    border: 1px;
-    border-style: solid;
-    border-color: rgb(0, 0, 0);
-}
-.text-containers{
-    display: block;
-}
-.text-boxes{
-    margin-bottom: 25px;
-    display: flex;
-}
 .search-text{
     width: 250px;
     height: 33.75px;
@@ -66,12 +51,13 @@
     border-color: rgb(0, 0, 0);
     background-color: rgb(230, 230, 230);
 }
-.text-note{
-    margin: 0px;
-    font-size: 14;
-    color: black;
-    font-family: Helvetica, Arial, sans-serif;
-}
-.close{
-    position: relative;
-}
+.TextBox {
+    display: block;
+    width: 467.5px;
+    height: 157.5px;
+    padding: 4px 8px;
+    margin-bottom: 25px;
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+  }
