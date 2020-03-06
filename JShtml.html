@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-<link href="JScss.css" rel="stylesheet">
-<meta charset="utf-8">
-</head>
-
-
-
-<body>
+<!-- press F1 -> enter "format document"  in order to format it -->
+<head>
+    <link href="JScss.css" rel="stylesheet">
     <script src="Code.js"></script>
-
-<div class="main-container">
-    <div class="container">
-        <div class="header-box">
-            <input class="search-text" type="text" placeholder="Header text">
-            <div><textarea class="textArea" rows="1" cols="50">Multi-line 
-content text</textarea>
+    <meta charset="utf-8">
+</head>
+<body>
+    <!-- why do you need main container? it doesn't solve any of the tasks.
+        html should be rubber and not fixed only for the size of your display
+    -->
+    <div class="main-container">
+        <div class="container">
+            <div class="header-box">
+                <input class="search-text" type="text" placeholder="Header text">
+                <div>
+                    <!-- this text area shoul be the input for your notes
+                        what you enter inside it should be displayed inside your note
+                        when you click on add button
+                    -->
+                    <textarea class="textArea" rows="1" cols="50"></textarea>
+                </div>
+                <!-- headerBtn class is not used -->
+                <div class="headerBtn">
+                    <!-- why do you call it search btn? all classes should be lowercase like "add-note-btn" -->
+                    <button class="search-Btn" onclick="createPara()">Add</button>
+                </div>
             </div>
-            <div class="headerBtn">
-                <button class="search-Btn" onclick="createPara()">Add</button>
-        </div>
-        </div>
-        <div class="text-containers">
-            <div onclick="closeParaBox(this);" id="1">
+            <div class="text-containers">
+                <div onclick="closeParaBox(this);" id="1">
+                </div>
             </div>
-</div>
-<div>
-    <button class="clearBtn" onclick="removePara()">Clear all</button>
-</div>
-</div>
-</div>
+            <div>
+                <button class="clearBtn" onclick="removePara()">Clear all</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
