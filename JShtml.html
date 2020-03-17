@@ -7,24 +7,15 @@
     <meta charset="utf-8">
 </head>
 <body>
-    <!-- why do you need main container? it doesn't solve any of the tasks.
-        html should be rubber and not fixed only for the size of your display
-    -->
     <div class="main-container">
         <div class="container">
             <div class="header-box">
                 <input class="search-text" type="text" placeholder="Header text">
                 <div>
-                    <!-- this text area shoul be the input for your notes
-                        what you enter inside it should be displayed inside your note
-                        when you click on add button
-                    -->
-                    <textarea class="textArea" rows="1" cols="50"></textarea>
+                    <textarea id='typeSomething' class="textArea" rows="1" cols="50"></textarea>
                 </div>
-                <!-- headerBtn class is not used -->
                 <div class="headerBtn">
-                    <!-- why do you call it search btn? all classes should be lowercase like "add-note-btn" -->
-                    <button class="search-Btn" onclick="createPara()">Add</button>
+                    <button class="search-Btn" onclick="createNote()">Add</button>
                 </div>
             </div>
             <div class="text-containers">
@@ -32,7 +23,7 @@
                 </div>
             </div>
             <div>
-                <button class="clearBtn" onclick="removePara()">Clear all</button>
+                <button class="clearBtn" onclick="removeNote()">Clear all</button>
             </div>
         </div>
     </div>
