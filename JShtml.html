@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- press F1 -> enter "format document"  in order to format it -->
+
 <head>
     <link href="JScss.css" rel="stylesheet">
     <script src="Code.js"></script>
     <meta charset="utf-8">
 </head>
+
 <body>
     <div class="main-container">
         <div class="container">
             <div class="header-box">
-                <input class="search-text" type="text" placeholder="Header text">
+                <input id='typeHeader' class="search-text" type="text" placeholder="Header text">
                 <div>
                     <textarea id='typeSomething' class="textArea" rows="1" cols="50"></textarea>
                 </div>
@@ -22,10 +24,14 @@
                 <div id="note-container">
                 </div>
             </div>
-            <div>
-                <button class="clearBtn" onclick="removeNote()">Clear all</button>
-            </div>
+            <select name="drp_menu" id="drop">
+                    <option value="all_notes">All Notes</option>
+                    <option value="done_notes">Done Notes</option>
+                    <option value="pending_notes">Pending Notes</option>
+                </select>
+            
         </div>
     </div>
 </body>
+
 </html>

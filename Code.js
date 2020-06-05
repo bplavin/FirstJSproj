@@ -5,8 +5,6 @@ const NOTE_BOX = "paragraphBox";
 function createNote() {
   let para = document.createElement("DIV");
   para.className = NOTE_BOX;
-  para.id = counter;
-  para.innerHTML = document.getElementById('typeSomething').value;
 
   let btn = document.createElement("BUTTON");
   btn.innerHTML = 'X';
@@ -32,7 +30,7 @@ function removeNote() {
 }
 
 function closeParaBox(event) {
-  var btn = event.target;
+  let btn = event.target;
   const note = btn.parentNode;
   const mainContainer = note.parentNode;
   mainContainer.removeChild(note);
