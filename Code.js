@@ -20,12 +20,12 @@ function removeNote() {
   let elem = document.getElementById('note-container');
   let notes = document.getElementsByClassName(NOTE_BOX);
   let temp = [];
-  for (var i = 0; i < notes.length; i++) {
-      temp.push(notes[i]);
+  for (let i = 0; i < notes.length; i++) {
+    temp.push(notes[i]);
   }
 
-  for (var i = 0; i < temp.length; i++) {
-      elem.removeChild(temp[i]);
+  for (let i = 0; i < temp.length; i++) {
+    elem.removeChild(temp[i]);
   }
 }
 
@@ -36,3 +36,12 @@ function closeParaBox(event) {
   mainContainer.removeChild(note);
 }
 
+fetch('https://jsonplaceholder.typicode.com/todos')
+  .then(response => response.json())
+  .then(commits => {
+    let data = [];
+    for (let x in commits) {
+      data.push(commits[x]);
+      createNote(data);
+    }
+  })
