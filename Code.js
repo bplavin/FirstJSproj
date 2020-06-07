@@ -40,8 +40,8 @@ fetch('https://jsonplaceholder.typicode.com/todos')
   .then(response => response.json())
   .then(commits => {
     let data = [];
-    for (let x in commits) {
-      data.push(commits[x]);
-      createNote(data);
+    for (let x of commits) {
+      console.log(data.push(x));
+      console.log(createNote(data));
     }
   })
