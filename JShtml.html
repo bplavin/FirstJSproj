@@ -24,11 +24,19 @@
                 <div id="note-container">
                 </div>
             </div>
-            <select name="drp_menu" id="drop">
-                <option value="all_notes">All Notes</option>
-                <option value="done_notes">Done Notes</option>
-                <option value="pending_notes">Pending Notes</option>
-            </select>
+            <div>
+                <select name="drp_menu" onchange="filterNotes(this)" id="drop">
+                    <option value="allNotes">All Notes</option>
+                    <option value="done_notes">Done Notes</option>
+                    <option value="pending_notes">Pending Notes</option>
+                </select>
+                <div id="checkBoxId" class="checkBoxes">
+                    <span class="labelCss" id="labelId"></span>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
 </body>
