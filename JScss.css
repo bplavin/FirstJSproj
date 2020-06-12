@@ -2,88 +2,66 @@
         box-sizing: border-box;
         font-family: Helvetica, Arial, sans-serif;
     }
+
+    body {
+        font-size: 16px;
+    }
     
     .container {
         display: flex;
-        margin: 40px;
-        /* use padding here. Margin is needed when you want to move one element from another */
+        padding: 40px;
         justify-content: space-between;
     }
-    /* .textArea  .search-text have almost identical properties. One element can have multiple classes. 
-    Common logic should be shared in common class for these inputs
-*/
-    
-    .textArea {
+
+    .textInput {
         width: 250px;
-        height: 125px;
         padding: 4px 8px;
-        margin: 20px 0;
         border: 1px solid rgb(0, 0, 0);
+    }
+
+    .textArea {
+        height: 125px;
+        margin: 20px 0;
     }
     
     .search-text {
-        width: 250px;
-        height: 33.75px;
-        padding: 4px 8px;
+        height: 34px;
         font-size: 14px;
-        border: 1px solid rgb(0, 0, 0);
     }
     
     .search-Btn {
-        width: 137.5px;
-        height: 31.75px;
-        font-size: 16px;
+        width: 137px;
+        height: 32px;
         padding: 0px 10px;
-        border: 1px;
-        /* border online property */
+        border: 1px solid rgb(0, 0, 0);
         border-radius: 6px;
-        border-style: solid;
-        border-color: rgb(0, 0, 0);
         background-color: rgb(230, 230, 230);
     }
     
     .paragraphBox {
         position: relative;
-        width: 327.5px;
-        height: 100.5px;
+        width: 327px;
+        height: 100px;
         padding: 4px 8px;
         margin-bottom: 25px;
-        border: 1px;
-        border-style: solid;
-        border-color: rgb(0, 0, 0);
+        border: 1px solid rgb(0, 0, 0);
     }
     
     .closingBtn {
         position: absolute;
         top: -1px;
         right: -1px;
-        border: 1px;
-        /* border shorthand */
-        border-style: solid;
-        border-color: rgb(0, 0, 0);
+        border: 1px solid rgb(0, 0, 0);
         background: white;
     }
-    
-    #drop {
-        position: relative;
-        height: 33.75px;
-        width: 182px;
-        font-size: 100%;
+
+    .filter {
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
     }
-    
-    .checkBoxes {
-        position: relative;
-        margin-top: 20px;
-        height: 25px;
+
+    .filter input {
         width: 25px;
-    }
-    
-    .labelCss {
-        display: inline-block;
-        position: relative;
-        width: 180px;
-        left: 50px;
-        bottom: 30px;
-        font-size: 16px;
-        color: blue;
+        height: 25px;
     }
