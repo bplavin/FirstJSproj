@@ -28,7 +28,7 @@ function createUsersCheckBox(userName) {
     checkbox.type = 'checkbox';
     checkbox.className = 'checkBoxes';
 
-    let label = document.createElement('span');
+    let label = document.createElement('label');
     label.appendChild(document.createTextNode(userName.name));
     label.className = 'labelCss';
 
@@ -64,12 +64,13 @@ function filterNotes(selectObject) {
     }
 
     let value = selectObject.value;
+    let cloud = selectObject.id;
 
-    if (value == "allNotes") {
-        for (let i of data) {
-            createNote(i);
+    if (value == "allNotes" && cloud.id == 1){
+            for (let i of data) {
+              console.log(createNote(i));
+            }
         }
-    }
 
     if (value == "done_notes") {
         for (let i of data) {
