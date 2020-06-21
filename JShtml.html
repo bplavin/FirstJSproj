@@ -20,14 +20,17 @@
                     <button class="search-Btn" onclick="createNote()">Add</button>
                 </div>
             </div>
-            <div id="note-container"></div>
             <div>
-                <select name="drp_menu" onchange="filterNotes(this)">
+                <div id="note-container"></div>
+                <div id="pagination-container" class="buttons_style"></div>
+            </div>
+            <div>
+                <select class="drp_menu" onchange="filterNotes(this)">
                     <option value="allNotes">All Notes</option>
                     <option value="done_notes">Done Notes</option>
                     <option value="pending_notes">Pending Notes</option>
                 </select>
-                <div id="filters-section" onclick="filterNotes(this)"></div>
+                <div id="filters-section"></div>
             </div>
         </div>
     </div>
