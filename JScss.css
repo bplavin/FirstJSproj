@@ -70,3 +70,8 @@
         width: 150px;
         height: 35px;
     }
+
+    .pagenumbers{
+        display: inline;
+        align-items: center;
+    }

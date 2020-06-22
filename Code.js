@@ -14,10 +14,12 @@ fetch('https://jsonplaceholder.typicode.com/todos')
     .then(commits => {
         for (let commit of commits) {
             data.push(commit);
-            createNote(commit);
+        };
+        for (let i = 0; i < commits.length; i++) {
+          let one = commits.slice(0, 20);
+          createNote(one);
         }
         paginationButtons(commits);
-        displayNotes(commits);
     });
 
 fetch('https://jsonplaceholder.typicode.com/users')
@@ -108,31 +110,6 @@ function closeParaBox(event) {
     const mainContainer = note.parentNode;
     mainContainer.removeChild(note);
 };
-
-function displayNotes(items) {
-    let noteContainer = document.getElementById('note-container');
-    let notes = document.getElementsByClassName(NOTE_BOX);
-    let temp = [];
-
-    for (let i = 0; i < notes.length; i++) {
-        temp.push(notes[i]);
-    }
-
-    for (let i = 0; i < temp.length; i++) {
-        noteContainer.removeChild(temp[i])
-    }
-
-
-    let begin = ((currentPage - 1) * numberPerPage);
-    let end = begin + numberPerPage;
-    let pageList = items.slice(begin, end);
-
-    for (let i = 0; i < pageList.length; i++) {
-        let item = pageList[i];
-        createNote(item);
-    }
-};
-
 
 function paginationButtons(list, items) {
     let buttons = document.getElementById('pagination-container');
