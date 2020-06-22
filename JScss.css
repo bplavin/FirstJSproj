@@ -41,7 +41,6 @@
     .paragraphBox {
         position: relative;
         width: 327px;
-        height: 100px;
         padding: 4px 8px;
         margin-bottom: 25px;
         border: 1px solid rgb(0, 0, 0);
@@ -74,4 +73,8 @@
     .pagenumbers{
         display: inline;
         align-items: center;
+    }
+
+    #pagination-container .active {
+        background-color: darkcyan;
     }

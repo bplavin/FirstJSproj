@@ -1,9 +1,9 @@
 "use strict";
 let data = [];
+let filteredData = [];
 let usersData = [];
 let arrOfId = [];
 
-let currentPage = 1;
 let numberPerPage = 20;
 
 
@@ -15,11 +15,9 @@ fetch('https://jsonplaceholder.typicode.com/todos')
         for (let commit of commits) {
             data.push(commit);
         };
-        for (let i = 0; i < commits.length; i++) {
-          let one = commits.slice(0, 20);
-          createNote(one);
-        }
-        paginationButtons(commits);
+        
+        filteredData = data;
+        createPaginationButtons(filteredData);
     });
 
 fetch('https://jsonplaceholder.typicode.com/users')
@@ -48,10 +46,18 @@ function createUsersCheckBox(user) {
     document.getElementById('filters-section').appendChild(filterContainer);
 }
 
+function rendorNotes(notes) {
+    for(let note of notes) {
+        createNote(note);
+    }
+}
+
 function createNote(oneNote) {
     let paragraph = document.createElement("DIV");
     paragraph.className = NOTE_BOX;
-    paragraph.innerText = oneNote.title + oneNote.userId;
+    paragraph.innerText = `${oneNote.title} 
+    \n id: ${oneNote.id}
+    \n userID: ${oneNote.userId}`;
 
 
     let btn = document.createElement("BUTTON");
@@ -79,7 +85,6 @@ function filterNotes(filterElement) {
     let value = filterElement.value;
     let selectedUseres = getUsersId();
 
-
     function getUsersId() {
         let checkData = [];
         for (let user of usersData) {
@@ -91,17 +96,18 @@ function filterNotes(filterElement) {
         return checkData;
     };
 
-
+    filteredData = [];
     for (let note of data) {
         if (value == "allNotes" && selectedUseres.includes(note.userId)) {
-            createNote(note);
+            filteredData.push(note);
         } else if (value == "done_notes" && selectedUseres.includes(note.userId) && note.completed) {
-            createNote(note);
+            filteredData.push(note);
         } else if (value == 'pending_notes' && selectedUseres.includes(note.userId) && !note.completed) {
-            createNote(note);
+            filteredData.push(note);
         }
     };
 
+    createPaginationButtons(filteredData);
 };
 
 function closeParaBox(event) {
@@ -111,31 +117,35 @@ function closeParaBox(event) {
     mainContainer.removeChild(note);
 };
 
-function paginationButtons(list, items) {
-    let buttons = document.getElementById('pagination-container');
+function createPaginationButtons(commits) {
+    let buttonsContainer = document.getElementById('pagination-container');
 
-    let page_count = Math.ceil(list.length / numberPerPage);
+    let page_count = Math.ceil(commits.length / numberPerPage);
     for (let i = 1; i < page_count + 1; i++) {
-        let btn = createButtons(i, items);
-        buttons.appendChild(btn);
+        let btn = createButton(i, commits);
+        buttonsContainer.appendChild(btn);
     }
 };
 
-function createButtons(page, items) {
+function createButton(pageNumber, commits) {
     let button = document.createElement('button');
-    button.innerText = page;
+    button.innerText = pageNumber;
 
-    if (currentPage == page) button.classList.add('active');
-
-    button.addEventListener('click', function () {
-        currentPage = page;
-        displayNotes(items, numberPerPage, currentPage);
-
-        let current_btn = document.querySelector('.pagenumbers button.active');
-        current_btn.classList.remove('active');
-
+    if (pageNumber === 1) {
         button.classList.add('active');
-        });
+        rendorNotes(commits.slice(0, numberPerPage));
+    }
         
+    button.addEventListener('click', function(e) {
+        let current_btn = document.querySelector('.active');
+        current_btn.classList.remove('active');
+        button.classList.add('active');
+    
+        const fromPage = +button.innerText;
+        const fromElement = fromPage * numberPerPage - numberPerPage;
+        rendorNotes(filteredData.slice(fromElement, fromElement + numberPerPage));
+    });
     return button;
 };
+
+
