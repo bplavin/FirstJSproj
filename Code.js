@@ -4,9 +4,7 @@ let filteredData = [];
 let usersData = [];
 let arrOfId = [];
 
-let numberPerPage = 15;
-
-
+let numberPerPage = 20;
 const NOTE_BOX = "paragraphBox";
 
 fetch('https://jsonplaceholder.typicode.com/todos')
@@ -15,7 +13,6 @@ fetch('https://jsonplaceholder.typicode.com/todos')
         for (let commit of commits) {
             data.push(commit);
         };
-        
         filteredData = data;
         createPaginationButtons(filteredData);
     });
@@ -29,33 +26,23 @@ fetch('https://jsonplaceholder.typicode.com/users')
         }
     });
 
-function createUsersCheckBox(user) {
-    let filterContainer = document.createElement('div');
-    filterContainer.className = "filter";
+function addTextNote(text) {
+    text = '';
+    let tranferText = document.getElementById('typeSomething').value += text;
+  
+    let paragraph = document.createElement("DIV");
+    paragraph.className = NOTE_BOX;
+    paragraph.innerText = tranferText;
 
-    let checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.id = user.id;
-    checkbox.checked = true;
-    checkbox.addEventListener('change', function() {
-        const selectDropdown = document.getElementsByClassName('drp_menu')[0];
-        filterNotes(selectDropdown);
-    });
 
-    let label = document.createElement('label');
-    label.innerText = user.name;
+    let btn = document.createElement("BUTTON");
+    btn.innerHTML = 'X';
+    btn.className = "closingBtn";
+    btn.onclick = closeParaBox;
 
-    filterContainer.appendChild(checkbox);
-    filterContainer.appendChild(label);
-    document.getElementById('filters-section').appendChild(filterContainer);
-}
-
-function rendorNotes(notes) {
-    deleteNotesFromDashboard();
-    for(let note of notes) {
-        createNote(note);
-    }
-}
+    paragraph.appendChild(btn);
+    document.getElementById("note-container").appendChild(paragraph);
+    };
 
 function createNote(oneNote) {
     let paragraph = document.createElement("DIV");
@@ -72,7 +59,7 @@ function createNote(oneNote) {
 
     paragraph.appendChild(btn);
     document.getElementById("note-container").appendChild(paragraph);
-}
+};
 
 function filterNotes(filterElement) {
     deleteNotesFromDashboard();
@@ -105,24 +92,34 @@ function deleteNotesFromDashboard() {
     for (let i = 0; i < temp.length; i++) {
         noteContainer.removeChild(temp[i])
     }
-}
-
-function getUsersIds() {
-    let checkData = [];
-    for (let user of usersData) {
-        let checkbox = document.getElementById(user.id + '');
-        if (checkbox.checked == true) {
-            checkData.push(user.id);
-        }
-    }
-    return checkData;
 };
 
-function closeParaBox(event) {
-    let btn = event.target;
-    const note = btn.parentNode;
-    const mainContainer = note.parentNode;
-    mainContainer.removeChild(note);
+function createUsersCheckBox(user) {
+    let filterContainer = document.createElement('div');
+    filterContainer.className = "filter";
+
+    let checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = user.id;
+    checkbox.checked = true;
+    checkbox.addEventListener('change', function () {
+        const selectDropdown = document.getElementsByClassName('drp_menu')[0];
+        filterNotes(selectDropdown);
+    });
+
+    let label = document.createElement('label');
+    label.innerText = user.name;
+
+    filterContainer.appendChild(checkbox);
+    filterContainer.appendChild(label);
+    document.getElementById('filters-section').appendChild(filterContainer);
+};
+
+function rendorNotes(notes) {
+    deleteNotesFromDashboard();
+    for (let note of notes) {
+        createNote(note);
+    }
 };
 
 function createPaginationButtons(commits) {
@@ -142,7 +139,7 @@ function deletePaginationButtons() {
     for (let btn of buttons) {
         buttonsContainer.removeChild(btn);
     }
-}
+};
 
 function createButton(pageNumber, commits) {
     let button = document.createElement('button');
@@ -152,17 +149,35 @@ function createButton(pageNumber, commits) {
         button.classList.add('active');
         rendorNotes(commits.slice(0, numberPerPage));
     }
-        
-    button.addEventListener('click', function(e) {
+
+    button.addEventListener('click', function () {
         let current_btn = document.querySelector('.active');
         current_btn.classList.remove('active');
         button.classList.add('active');
-    
+
         const fromPage = +button.innerText;
         const fromElement = fromPage * numberPerPage - numberPerPage;
         rendorNotes(filteredData.slice(fromElement, fromElement + numberPerPage));
     });
     return button;
+};
+
+function getUsersIds() {
+    let checkData = [];
+    for (let user of usersData) {
+        let checkbox = document.getElementById(user.id + '');
+        if (checkbox.checked == true) {
+            checkData.push(user.id);
+        }
+    }
+    return checkData;
+};
+
+function closeParaBox(event) {
+    let btn = event.target;
+    const note = btn.parentNode;
+    const mainContainer = note.parentNode;
+    mainContainer.removeChild(note);
 };
 
 
