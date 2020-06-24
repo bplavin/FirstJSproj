@@ -4,7 +4,7 @@ let filteredData = [];
 let usersData = [];
 let arrOfId = [];
 
-let numberPerPage = 20;
+let numberPerPage = 15;
 
 
 const NOTE_BOX = "paragraphBox";
@@ -37,6 +37,10 @@ function createUsersCheckBox(user) {
     checkbox.type = 'checkbox';
     checkbox.id = user.id;
     checkbox.checked = true;
+    checkbox.addEventListener('change', function() {
+        const selectDropdown = document.getElementsByClassName('drp_menu')[0];
+        filterNotes(selectDropdown);
+    });
 
     let label = document.createElement('label');
     label.innerText = user.name;
@@ -47,6 +51,7 @@ function createUsersCheckBox(user) {
 }
 
 function rendorNotes(notes) {
+    deleteNotesFromDashboard();
     for(let note of notes) {
         createNote(note);
     }
@@ -70,31 +75,9 @@ function createNote(oneNote) {
 }
 
 function filterNotes(filterElement) {
-    let noteContainer = document.getElementById('note-container');
-    let notes = document.getElementsByClassName(NOTE_BOX);
-    let temp = [];
-
-    for (let i = 0; i < notes.length; i++) {
-        temp.push(notes[i]);
-    }
-
-    for (let i = 0; i < temp.length; i++) {
-        noteContainer.removeChild(temp[i])
-    }
-
+    deleteNotesFromDashboard();
     let value = filterElement.value;
-    let selectedUseres = getUsersId();
-
-    function getUsersId() {
-        let checkData = [];
-        for (let user of usersData) {
-            let checkbox = document.getElementById(user.id + '');
-            if (checkbox.checked == true) {
-                checkData.push(user.id);
-            }
-        }
-        return checkData;
-    };
+    let selectedUseres = getUsersIds();
 
     filteredData = [];
     for (let note of data) {
@@ -110,6 +93,31 @@ function filterNotes(filterElement) {
     createPaginationButtons(filteredData);
 };
 
+function deleteNotesFromDashboard() {
+    let noteContainer = document.getElementById('note-container');
+    let notes = document.getElementsByClassName(NOTE_BOX);
+    let temp = [];
+
+    for (let i = 0; i < notes.length; i++) {
+        temp.push(notes[i]);
+    }
+
+    for (let i = 0; i < temp.length; i++) {
+        noteContainer.removeChild(temp[i])
+    }
+}
+
+function getUsersIds() {
+    let checkData = [];
+    for (let user of usersData) {
+        let checkbox = document.getElementById(user.id + '');
+        if (checkbox.checked == true) {
+            checkData.push(user.id);
+        }
+    }
+    return checkData;
+};
+
 function closeParaBox(event) {
     let btn = event.target;
     const note = btn.parentNode;
@@ -118,14 +126,23 @@ function closeParaBox(event) {
 };
 
 function createPaginationButtons(commits) {
+    deletePaginationButtons();
     let buttonsContainer = document.getElementById('pagination-container');
-
     let page_count = Math.ceil(commits.length / numberPerPage);
     for (let i = 1; i < page_count + 1; i++) {
         let btn = createButton(i, commits);
         buttonsContainer.appendChild(btn);
     }
 };
+
+function deletePaginationButtons() {
+    const buttons = document.querySelectorAll('#pagination-container button');
+    let buttonsContainer = document.getElementById('pagination-container');
+
+    for (let btn of buttons) {
+        buttonsContainer.removeChild(btn);
+    }
+}
 
 function createButton(pageNumber, commits) {
     let button = document.createElement('button');
